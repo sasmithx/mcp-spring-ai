@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- File appender - all logs go here -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>mcp-server.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>mcp-server-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- NO CONSOLE APPENDER - this is intentional -->
+
+    <!-- Root logger -->
+    <root level="ERROR">
+        <appender-ref ref="FILE" />
+    </root>
+
+    <!-- Specific loggers -->
+    <logger name="org.springframework" level="ERROR" />
+    <logger name="org.springframework.ai" level="ERROR" />
+    <logger name="com.sasmithx" level="ERROR" />
+</configuration>
